@@ -7,9 +7,12 @@ echo "Install git"
 
 apt-get install git -y > /dev/null
 
-echo "Install ohmyz"
+echo "Install zsh"
 apt-get install zsh -y > /dev/null
-wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+sudo chsh -s /bin/zsh vagrant
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+zsh
 
 echo "Install Atom editor"
 

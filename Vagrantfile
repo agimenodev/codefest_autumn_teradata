@@ -53,7 +53,7 @@ Vagrant.configure(2) do |config|
        "--clipboard", "bidirectional"
        "--vram", "128"
        ]
-     
+
     end
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -79,11 +79,15 @@ Vagrant.configure(2) do |config|
       sudo apt-get install -y mongodb
     SHELL
 
-  # Provision install mongodb
+  # Provision setup general configuration example
     config.vm.provision "shell", path: "config/setup.sh"
 
   # Provision copy ssh files over
   config.vm.provision "file",
     source: "~/.ssh/id_rsa",
     destination: "/home/vagrant/.ssh/id_rsa"
+
+  config.vm.provision "file",
+    source: "~/.ssh/id_rsa.pub",
+    destination: "/home/vagrant/.ssh/id_rsa.pub"
 end
