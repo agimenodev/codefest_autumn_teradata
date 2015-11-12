@@ -46,12 +46,14 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
      vb.gui = true
+     vb.memory = "8192"
+     vb.cpus = 2
      vb.customize [
        "modifyvm", :id,
-       "--clipboard", "bidirectional"]
-     # Customize the amount of memory on the VM:
-     vb.memory = "8024"
-     vb.cpus = 2
+       "--clipboard", "bidirectional"
+       "--vram", "128"
+       ]
+     
     end
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -77,8 +79,8 @@ Vagrant.configure(2) do |config|
       sudo apt-get install -y mongodb
     SHELL
 
-    # Provision install mongodb
-      config.vm.provision "shell", path: "config/setup.sh"
+  # Provision install mongodb
+    config.vm.provision "shell", path: "config/setup.sh"
 
   # Provision copy ssh files over
   config.vm.provision "file",
