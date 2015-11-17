@@ -50,7 +50,7 @@ Vagrant.configure(2) do |config|
      vb.cpus = 2
      vb.customize [
        "modifyvm", :id,
-       "--clipboard", "bidirectional"
+       "--clipboard", "bidirectional",
        "--vram", "128"
        ]
 
