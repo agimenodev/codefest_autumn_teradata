@@ -11,9 +11,7 @@ The data is taken from geonames.org
 
  I tried to pick such that both beginners and advanced find something interesting to try out. Don't worry about doing them all, try, read documentations. We will go through them during the 30mins before next session
 
- #through mongo client
-
-1.Restore the provided dump
+1. Restore the provided dump
     * unzip dump.zip
     * mongorestore --db geo dump/geo
 2. Find out available collections
