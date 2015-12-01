@@ -33,8 +33,8 @@ Please review CONTRIBUTING.md so you will have a better description of each task
 First you need to download the dev-environment so let's start.
 
 * Download VirtualBox and Vagrant
-* vagrant box add box-cutter/ubuntu1404-desktop
-* vagrant init box-cutter/ubuntu1404-desktop
+* Clone this repo
+* Go to the cloned workdirectory 
 * vagrant up
 
 Vagrantfile contains a provision to add all the settings that you will be need to work
