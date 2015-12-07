@@ -25,31 +25,53 @@ var Country     = require('./app/models/country');
 // =============================================================================
 
 // create our router
-var router = express.Router();
+var countryRouter = express.Router();
+
+var logger = function(req, res, next) {
+	// do logging
+	console.log('Reading/Wrining Countries...');
+	next();
+};
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
-	// do logging
-	console.log('Something is happening.');
-	next();
-});
+countryRouter.use(logger);
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
+countryRouter.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
 // on routes that end in /geo/country
 // ----------------------------------------------------
-router.route('/geo/country')
+countryRouter.route('/geo/countries')
+	.get(function(req, res) {
+		Country
+			.find({})
+			.select('name continent')
+				.exec(function(err, countries) {
+					if (err) res.send(err);
+					res.json(countries);
+				});
+	})
+	.post(function(req, res) {
+		var country = new Country();
+		country.name = req.body.name;
+		country.continent = req.body.continent;
+
+		country.save(function(err) {
+			if (err) res.send(err);
+
+			res.json({ message: 'Country created!' });
+		}); 
+	});
 
 // on routes that end in /geo/country/:country_id
 // ----------------------------------------------------
-router.route('/geo/country/:country_id');
+countryRouter.route('/geo/countries/:country_id');
 
 
 // REGISTER OUR ROUTES -------------------------------
-app.use('/api', router);
+app.use('/api', countryRouter);
 
 // START THE SERVER
 // =============================================================================
