@@ -79,6 +79,11 @@ Vagrant.configure(2) do |config|
       sudo apt-get install -y mongodb
     SHELL
 
+    config.vm provision "shell", inline: <<-SHELL
+      curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - &&
+      sudo apt-get install -y nodejs
+    SHELL
+    
   # Provision setup general configuration example
     config.vm.provision "shell", path: "config/setup.sh"
 
