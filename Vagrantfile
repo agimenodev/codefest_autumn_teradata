@@ -73,12 +73,10 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  # Provision install mongodb and nodejs
+  # Provision install mongodb
     config.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
       sudo apt-get install -y mongodb
-      curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - &&
-     sudo apt-get install -y nodejs
     SHELL
 
     

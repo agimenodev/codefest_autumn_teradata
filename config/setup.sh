@@ -4,8 +4,11 @@ echo "Running provision external configuration file"
 apt-get update -y > /dev/null
 
 echo "Install git"
-
 apt-get install git -y > /dev/null
+
+echo "Install nodeJS"
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - &&
+apt-get install -y nodejs
 
 echo "Install zsh"
 apt-get install zsh -y > /dev/null
